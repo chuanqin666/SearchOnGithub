@@ -14,7 +14,7 @@ export default function App() {
     return (<div>
             <input type="text" placeholder="Please enter keywords" onChange={
                 e => {setKeywords(e.target.value)
-                 dispatch(getResult(String(keywords)))}
+                dispatch(getResult(String(keywords)))}
             } />
             {/*<button type="submit" onClick={() => dispatch(getResult(String(keywords)))}>Search</button>*/}
             {info.map(item => {
