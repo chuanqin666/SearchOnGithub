@@ -6,7 +6,7 @@ export default function App() {
     let info = useSelector(selectValue).items
     const dispatch = useDispatch()
     const [keywords, setKeywords] = useState('')
-    console.log(JSON.stringify(info))
+
     if (typeof info == "undefined"){
       info = [{name: " ", html_url: " ", stargazers_count: " ", watchers_count: " "}]
     }

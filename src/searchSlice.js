@@ -8,7 +8,6 @@ export const searchSlice = createSlice({
   reducers: {
     dataResult: (state, action) => {
       state.value = action.payload
-      console.log(state.value)
     },
   },
 })
@@ -19,13 +18,11 @@ export const getResult = createAsyncThunk('search/getResult', async (state,actio
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         return data;
       })
       .catch((e) => {
         console.log(e);
       });
-    console.log(response);
     action.dispatch(dataResult(response));
 
 })
