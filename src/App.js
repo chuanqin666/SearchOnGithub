@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { getResult, selectValue } from './searchSlice'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    let info = useSelector(selectValue).items
+    const dispatch = useDispatch()
+    const [keywords, setKeywords] = useState('')
+    console.log(JSON.stringify(info))
+    if (typeof info == "undefined"){
+      info = [{name: " ", html_url: " ", stargazers_count: " ", watchers_count: " "}]
+    }
+
+    return (<div>
+            <input type="text" placeholder="Please enter keywords" onChange={
+                e => {setKeywords(e.target.value)
+                setTimeout(() => {dispatch(getResult(String(keywords)))}, 500)}
+            } />
+            {/*<button type="submit" onClick={() => dispatch(getResult(String(keywords)))}>Search</button>*/}
+            {info.map(item => {
+                return (
+                    <div>
+                        <li>
+                            <p>Project name:<a href={item.html_url}>{item.name}</a></p>
+                            <p>Stargazers count:{item.stargazers_count}</p>
+                            <p>Watchers count:{item.watchers_count}</p>
+                        </li>
+                    </div>
+                );
+            })
+            }
+          </div>)
 }
-
-export default App;
