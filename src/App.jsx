@@ -19,14 +19,11 @@ export default function App() {
       <input
         type="text"
         placeholder="Please enter keywords"
-        onChange={
-                ((e) => {
-                  e.persist();
-                  if (e.target.value.length >= 3) {
-                    _.debounce(dispatch(getResult(String(e.target.value))), 1000);
-                  }
-                })
-            }
+        onChange={(_.debounce((e) => {
+          if (e.target.value.length >= 3) {
+            dispatch(getResult(String(e.target.value)));
+          }
+        }, 1000))}
       />
 
       {info.map((item) => (

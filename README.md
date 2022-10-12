@@ -29,6 +29,3 @@ The result card should include:
 
 The source code for the test task must be stored in a public repository (GitHub, Gitlab, Bitbucket etc) 
 
-### Current step:
-
-Minimal requirements have all finished.
